@@ -1,12 +1,13 @@
 import { technologies } from "../data/technologies";
-
+import { useNavigate } from "react-router-dom";
 const Subject = () => {
+  const navigator = useNavigate();
   const scrollToId = (id) => {
     document.getElementById(id).scrollIntoView({ behavior: "smooth" });
   };
-  const openQus = (tech) =>{
-    
-  }
+  const openQus = (tech) => {
+    navigator(`/qus/${tech}`, { state: { tech: tech } });
+  };
   return (
     <>
       <div
@@ -37,15 +38,22 @@ const Subject = () => {
         id="tect-sec"
         className="h-screen w-full bg-black grid-cols-4 grid p-10"
       >
-        {technologies.map((tect) => (
-          <div className="h-50 w-60 bg-gray-900 flex flex-col gap-2 justify-center pl-2.5 rounded-2xl">
-            <img src={tect.icon} alt="" width={30} />
+        {technologies.map((tech, index) => (
+          <div
+            key={index}
+            className="h-50 w-60 bg-gray-900 flex flex-col gap-2 justify-center pl-2.5 rounded-2xl"
+          >
+            <img src={tech.icon} alt="" width={30} />
             <h2 className="text-2xl text-yellow-400 font-semibold">
-              {tect.name}
+              {tech.name}
             </h2>
-            <p className="text-white">{tect.description}</p>
-            <button className="h-10 w-20 text-white cursor-pointer active:bg-blue-700  bg-blue-600 mt-2 rounded-3xl"
-            onClick={()=>{}}>
+            <p className="text-white">{tech.description}</p>
+            <button
+              className="h-10 w-20 text-white cursor-pointer active:bg-blue-700  bg-blue-600 mt-2 rounded-3xl"
+              onClick={() => {
+                openQus(tech.name);
+              }}
+            >
               start
             </button>
           </div>

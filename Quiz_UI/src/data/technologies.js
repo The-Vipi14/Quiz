@@ -10,7 +10,7 @@ export const technologies = [
     description: "CSS for styling web pages",
   },
   {
-    name: "Java Script",
+    name: "JavaScript",
     icon: "https://skillicons.dev/icons?i=javascript",
     description: "JavaScript for web development",
   },

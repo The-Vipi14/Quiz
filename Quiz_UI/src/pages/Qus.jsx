@@ -1,13 +1,16 @@
+import { useLocation, useParams } from "react-router-dom";
 import { quizData } from "../data/qus";
-
+// useLocation
 const Qus = () => {
+  const { state } = useLocation();
+  const {tech} = useParams()
   return (
     <>
       <div className=" w-full bg-gradient-to-r from-black to-gray-900">
         {quizData.map(
           (qus) =>
             // short circuit evaluation performed
-            qus.tech == "JavaScript" && (
+            qus.tech == state.tech && (
               <div className="w-full bg-gray-900">
                 {qus.questions.map((q) => (
                   <div className="h-screen w-full p-20 ">
