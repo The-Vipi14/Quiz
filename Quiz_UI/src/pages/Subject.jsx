@@ -1,6 +1,12 @@
 import { technologies } from "../data/technologies";
 
 const Subject = () => {
+  const scrollToId = (id) => {
+    document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+  };
+  const openQus = (tech) =>{
+    
+  }
   return (
     <>
       <div
@@ -20,11 +26,17 @@ const Subject = () => {
           “Select a field below to start your learning journey. One step at a
           time, one quiz at a time—towards mastery.”
         </h4>
-        <button className="h-15 w-70 mt-10 bg-green-600 rounded-4xl text-2xl text-white font-bold cursor-pointer active:bg-green-700">
+        <button
+          className="h-15 w-70 mt-10 bg-green-600 rounded-4xl text-2xl text-white font-bold cursor-pointer active:bg-green-700"
+          onClick={() => scrollToId("tect-sec")}
+        >
           choose
         </button>
       </div>
-      <div className="h-screen w-full bg-black grid-cols-4 grid p-10">
+      <div
+        id="tect-sec"
+        className="h-screen w-full bg-black grid-cols-4 grid p-10"
+      >
         {technologies.map((tect) => (
           <div className="h-50 w-60 bg-gray-900 flex flex-col gap-2 justify-center pl-2.5 rounded-2xl">
             <img src={tect.icon} alt="" width={30} />
@@ -32,7 +44,8 @@ const Subject = () => {
               {tect.name}
             </h2>
             <p className="text-white">{tect.description}</p>
-            <button className="h-10 w-20 text-white cursor-pointer active:bg-blue-700  bg-blue-600 mt-2 rounded-3xl">
+            <button className="h-10 w-20 text-white cursor-pointer active:bg-blue-700  bg-blue-600 mt-2 rounded-3xl"
+            onClick={()=>{}}>
               start
             </button>
           </div>

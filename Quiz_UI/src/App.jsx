@@ -1,16 +1,20 @@
-import React from 'react'
-import Home from './pages/Home'
-import Subject from './pages/Subject'
-import Qus from './pages/Qus'
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import Subject from "./pages/Subject";
+import Qus from "./pages/Qus";
 
 const App = () => {
   return (
     <>
-    {/* <Home/> */}
-    {/* <Subject/> */}
-    <Qus/>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/technology" element={<Subject />} />
+          <Route path="/qus" element={<Qus />} />
+        </Routes>
+      </BrowserRouter>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
