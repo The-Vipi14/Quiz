@@ -20,7 +20,7 @@ const Subject = () => {
           “Select a field below to start your learning journey. One step at a
           time, one quiz at a time—towards mastery.”
         </h4>
-        <button className="h-15 w-70 mt-10 bg-green-600 rounded-4xl text-2xl text-white font-bold">
+        <button className="h-15 w-70 mt-10 bg-green-600 rounded-4xl text-2xl text-white font-bold cursor-pointer active:bg-green-700">
           choose
         </button>
       </div>
