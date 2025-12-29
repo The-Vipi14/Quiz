@@ -14,7 +14,7 @@ const Home = () => {
           Strong basics build great developers.
         </h3>
         <Link
-          className="h-20 w-100 text-center bg-green-600 rounded-4xl text-4xl text-white font-bold"
+          className="h-20 w-100 p-5 text-center bg-green-600 rounded-4xl text-4xl text-white font-bold"
           to={"/technology"}
         >
           let's go
