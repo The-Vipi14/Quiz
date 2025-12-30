@@ -2,12 +2,11 @@ import { useEffect, useState, useContext } from "react";
 import { AnswersContext } from "../context/AnswersContext";
 
 const QusComp = ({ qus }) => {
-
   const { rightAnswers, setRightAnswers, checkedAnswer, setCheckedAnswer } =
     useContext(AnswersContext);
   const [selectedAnswer, setSelectedAnswer] = useState([]);
-  const [newAns, setNewAns] = useState({});
-  
+  const [newAns, setNewAns] = useState(null);
+
   useEffect(() => {
     const answers = qus.map((ans) => {
       return { id: ans.id, ans: ans.answer };
@@ -16,7 +15,8 @@ const QusComp = ({ qus }) => {
   }, []);
 
   useEffect(() => {
-    if (newAns.length == 0) return;
+    // if (newAns.length == 0) return;
+    if(!newAns) return
     setCheckedAnswer((pre) =>
       pre.some((a) => a.id === newAns.id)
         ? pre.map((a) => (a.id === newAns.id ? newAns : a))
