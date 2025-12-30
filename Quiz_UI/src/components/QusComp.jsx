@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { AnswersContext } from "../context/AnswersContext";
+
 const QusComp = ({ qus }) => {
-  // console.log(qus);
-  const [rightAnswers, setRightAnswers] = useState([]);
+
+  const { rightAnswers, setRightAnswers, checkedAnswer, setCheckedAnswer } =
+    useContext(AnswersContext);
   const [selectedAnswer, setSelectedAnswer] = useState([]);
-  const [checkedAnswer, setCheckedAnswer] = useState([]);
   const [newAns, setNewAns] = useState({});
   
   useEffect(() => {
@@ -11,19 +13,16 @@ const QusComp = ({ qus }) => {
       return { id: ans.id, ans: ans.answer };
     });
     setRightAnswers(answers);
-  }, [qus]);
+  }, []);
 
   useEffect(() => {
-    if (newAns === null) return;
+    if (newAns.length == 0) return;
     setCheckedAnswer((pre) =>
       pre.some((a) => a.id === newAns.id)
         ? pre.map((a) => (a.id === newAns.id ? newAns : a))
         : [...pre, newAns]
     );
   }, [newAns]);
-
-  // console.log(checkedAnswer);
-  // console.log(rightAnswers)
 
   return (
     <div>
