@@ -5,7 +5,9 @@ export const AnswersContext = createContext();
 export const AnswerContextProvider = ({ children }) => {
   const [rightAnswers, setRightAnswers] = useState([]);
   const [checkedAnswer, setCheckedAnswer] = useState([]);
-  const [score, setScore] = useState(0)
+  const [currentSubjectQusAns, setCurrentSubjectQusAns] = useState([]);
+  const [activeSubjectQuiz, setSctiveSubjectQuiz] = useState([]);
+  const [score, setScore] = useState(0);
   return (
     <AnswersContext.Provider
       value={{
@@ -14,7 +16,11 @@ export const AnswerContextProvider = ({ children }) => {
         checkedAnswer,
         setCheckedAnswer,
         score,
-        setScore
+        setScore,
+        currentSubjectQusAns,
+        setCurrentSubjectQusAns,
+        activeSubjectQuiz,
+        setSctiveSubjectQuiz,
       }}
     >
       {children}
