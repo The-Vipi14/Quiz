@@ -39,14 +39,27 @@
 // };
 
 // export default Result;
-
-
-
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AnswersContext } from "../context/AnswersContext";
+import { useNavigate } from "react-router-dom";
 
 const Result = () => {
-  const { score, rightAnswers, checkedAnswer } = useContext(AnswersContext);
+  const navigate = useNavigate();
+
+  const {
+    score,
+    rightAnswers,
+    checkedAnswer,
+    currentSubjectQusAns,
+  } = useContext(AnswersContext);
+
+  useEffect(() => {
+    console.log("Current Subject Qus & Ans:", currentSubjectQusAns);
+  }, [currentSubjectQusAns]);
+
+  useEffect(() => {
+    console.log("Checked Answers:", checkedAnswer);
+  }, [checkedAnswer]);
 
   const total = rightAnswers.length;
   const percentage = total ? Math.round((score / total) * 100) : 0;
@@ -62,25 +75,36 @@ const Result = () => {
     color = "text-yellow-400";
   }
 
+  const detailedResults = currentSubjectQusAns.map((q) => {
+    const user = checkedAnswer.find((a) => a.id === q.id);
+    const right = rightAnswers.find((a) => a.id === q.id);
+
+    return {
+      id: q.id,
+      question: q.question,
+      userAns: user?.ans || "Not Answered",
+      rightAns: right?.ans || "",
+      isCorrect: user?.ans === right?.ans,
+    };
+  });
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black flex items-center justify-center px-6">
-      <div className="bg-gray-900 border border-gray-800 rounded-3xl p-12 max-w-lg w-full text-center shadow-2xl">
+      <div className="bg-gray-900 border border-gray-800 rounded-3xl p-12 max-w-3xl w-full shadow-2xl">
 
-        <h1 className="text-5xl font-extrabold text-white mb-4">
+        <h1 className="text-5xl font-extrabold text-white text-center mb-4">
           Quiz Result 🎯
         </h1>
 
-        <p className="text-gray-400 mb-10">
+        <p className="text-gray-400 text-center mb-10">
           Here’s how you performed in this quiz.
         </p>
 
-        {/* Score */}
-        <div className="mb-8">
+        <div className="text-center mb-8">
           <span className="text-7xl font-black text-blue-400">{score}</span>
           <span className="text-2xl text-gray-400"> / {total}</span>
         </div>
 
-        {/* Progress bar */}
         <div className="w-full bg-gray-800 rounded-full h-4 mb-6 overflow-hidden">
           <div
             className="h-full bg-gradient-to-r from-blue-500 to-cyan-400 transition-all"
@@ -88,26 +112,52 @@ const Result = () => {
           />
         </div>
 
-        <p className={`text-3xl font-semibold mb-10 ${color}`}>
+        <p className={`text-3xl font-semibold text-center mb-10 ${color}`}>
           {performance}
         </p>
 
-        {/* Stats */}
         <div className="grid grid-cols-2 gap-6 mb-10 text-center">
           <Stat label="Correct" value={score} color="text-green-400" />
           <Stat label="Wrong" value={total - score} color="text-red-400" />
         </div>
 
-        {/* Buttons */}
-        <div className="flex justify-center gap-6">
+        {/* Answers Review — scrollbar removed */}
+        <div className="space-y-6 mb-10">
+          {detailedResults.map((r, i) => (
+            <div
+              key={r.id}
+              className="bg-gray-800 border border-gray-700 rounded-xl p-5"
+            >
+              <p className="text-white mb-2">
+                <span className="text-blue-400">Q{i + 1}.</span> {r.question}
+              </p>
+
+              <p className="text-sm">
+                Your Answer:{" "}
+                <span className={r.isCorrect ? "text-green-400" : "text-red-400"}>
+                  {r.userAns}
+                </span>
+              </p>
+
+              {!r.isCorrect && (
+                <p className="text-sm text-green-400">
+                  Correct Answer: {r.rightAns}
+                </p>
+              )}
+            </div>
+          ))}
+        </div>
+
+        <div className="flex justify-center">
           <button
-            onClick={() => window.location.reload()}
+            onClick={() => navigate(-1)}
             className="px-10 py-4 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold text-lg
             hover:scale-105 active:scale-95 transition-all"
           >
             Try Again
           </button>
         </div>
+
       </div>
     </div>
   );

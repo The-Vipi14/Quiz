@@ -6,7 +6,7 @@ export const AnswerContextProvider = ({ children }) => {
   const [rightAnswers, setRightAnswers] = useState([]);
   const [checkedAnswer, setCheckedAnswer] = useState([]);
   const [currentSubjectQusAns, setCurrentSubjectQusAns] = useState([]);
-  const [activeSubjectQuiz, setSctiveSubjectQuiz] = useState([]);
+  const [activeSubjectQuiz, setActiveSubjectQuiz] = useState([]);
   const [score, setScore] = useState(0);
   return (
     <AnswersContext.Provider
@@ -20,7 +20,7 @@ export const AnswerContextProvider = ({ children }) => {
         currentSubjectQusAns,
         setCurrentSubjectQusAns,
         activeSubjectQuiz,
-        setSctiveSubjectQuiz,
+        setActiveSubjectQuiz,
       }}
     >
       {children}

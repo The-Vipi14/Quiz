@@ -69,7 +69,6 @@
 
 // export default QusComp;
 
-
 import { useEffect, useState, useContext } from "react";
 import { AnswersContext } from "../context/AnswersContext";
 
@@ -90,7 +89,7 @@ const QusComp = ({ qus }) => {
       ans: ans.answer,
     }));
     setRightAnswers(answers);
-  }, []);
+  }, [qus]);
 
   useEffect(() => {
     if (!newAns) return;

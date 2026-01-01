@@ -5,7 +5,7 @@
 // import { AnswersContext } from "../context/AnswersContext";
 
 // const Qus = () => {
-//   const { state } = useLocation(); // 
+//   const { state } = useLocation(); //
 //   const { tech } = useParams(); // quiz technology
 //   const navigator = useNavigate();
 //   const {
@@ -63,9 +63,6 @@
 
 // export default Qus;
 
-
-
-
 import { useLocation, useParams, useNavigate } from "react-router-dom";
 import { quizData } from "../data/qus";
 import QusComp from "../components/QusComp";
@@ -76,16 +73,22 @@ const Qus = () => {
   const { state } = useLocation();
   const { tech } = useParams();
   const navigator = useNavigate();
-
+  
   const {
     rightAnswers,
+    setRightAnswers,
     checkedAnswer,
+    setCheckedAnswer,
+    score,
     setScore,
-    setSctiveSubjectQuiz,
+    currentSubjectQusAns,
+    setCurrentSubjectQusAns,
+    activeSubjectQuiz,
+    setActiveSubjectQuiz,
   } = useContext(AnswersContext);
 
   useEffect(() => {
-    setSctiveSubjectQuiz();
+    setActiveSubjectQuiz();
   }, []);
 
   const calculateResult = () => {
