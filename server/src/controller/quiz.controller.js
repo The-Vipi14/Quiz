@@ -4,23 +4,49 @@ import Result from "../models/Result.js";
 /**
  * GET quizzes by technology
  */
+// export const getQuizzesByTech = async (req, res) => {
+//   try {
+//     const { tech } = req.query;
+
+//     if (!tech) {
+//       return res.status(400).json({ message: "Technology is required" });
+//     }
+
+//     const quizzes = await Quiz.find({ tech }).select("-questions.answer");
+
+//     res.status(200).json({
+//       success: true,
+//       count: quizzes.length,
+//       data: quizzes,
+//     });
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// };
+
+
+
+
+// GET quizzes by technology (ALL creators)
 export const getQuizzesByTech = async (req, res) => {
   try {
     const { tech } = req.query;
 
     if (!tech) {
-      return res.status(400).json({ message: "Technology is required" });
+      return res.status(400).json({ message: "Technology required" });
     }
 
-    const quizzes = await Quiz.find({ tech }).select("-questions.answer");
+    const quizzes = await Quiz.find({ tech })
+      .populate("createdBy", "name email") // 🔥 creator info
+      .select("-questions.answer")
+      .sort({ createdAt: -1 });
 
-    res.status(200).json({
+    res.json({
       success: true,
-      count: quizzes.length,
       data: quizzes,
     });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 };
 
@@ -173,3 +199,6 @@ export const deleteQuiz = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
+
+
