@@ -4,7 +4,7 @@ import quizRoutes from "./routes/quiz.routes.js";
 import authRoutes from "./routes/auth.route.js";
 import { protect, creatorOnly } from "./middleware/auth.middleware.js";
 import leaderboardRoutes from "./routes/leaderboard.routes.js";
-
+import resultRoutes from './routes/result.route.js'
 const app = express();
 
 app.use(cors());
@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
 app.use("/api/quizzes", quizRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/leaderboard", leaderboardRoutes);
-
+app.use("/api/results", resultRoutes);
 
 app.get("/api/protected", protect, (req, res) => {
     res.json({
@@ -32,4 +32,5 @@ app.get("/api/creator-test", protect, creatorOnly, (req, res) => {
         message: "You are a creator",
     });
 });
+
 export default app;
