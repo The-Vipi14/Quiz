@@ -1,7 +1,30 @@
 import { Link } from "react-router-dom";
 import { Code, Brain, Rocket, CheckCircle } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
+  const handleStartLearning = () => {
+    const token = localStorage.getItem("token");
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    console.log("Start clicked", { token, user }); // 🔍 DEBUG
+
+    if (!token || !user) {
+      navigate("/login");
+      return;
+    }
+
+    if (user.role === "user") {
+      navigate("/technology");
+      return;
+    }
+
+    if (user.role === "creator") {
+      navigate("/creator/dashboard");
+      return;
+    }
+  };
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-black via-gray-900 to-black text-white">
       {/* HERO */}
@@ -22,7 +45,7 @@ const Home = () => {
         </h3>
 
         <div className="flex gap-6 mt-8">
-          <Link
+          {/* <Link
             to="/technology"
             className="
     px-8 py-3 text-lg
@@ -34,7 +57,18 @@ const Home = () => {
   "
           >
             Start Learning 🚀
-          </Link>
+          </Link> */}
+          <button
+            onClick={handleStartLearning}
+            className=" px-8 py-3 text-lg
+    sm:px-10 sm:py-4 sm:text-xl
+    md:px-14 md:py-5 md:text-2xl
+    lg:px-16 lg:py-5 lg:text-3xl
+    rounded-full bg-gradient-to-r from-green-500 to-green-700 font-bold text-white
+    hover:scale-105 hover:shadow-2xl active:scale-95 transition-all"
+          >
+            Start Learning 🚀
+          </button>
 
           <a
             href="#features"
@@ -80,7 +114,7 @@ const Home = () => {
           Pick a technology, start answering questions, and turn practice into
           mastery.
         </p>
-        
+
         <Link
           to="/technology"
           className="
@@ -107,3 +141,47 @@ const Feature = ({ icon, title, text }) => (
 );
 
 export default Home;
+
+// import { useNavigate } from "react-router-dom";
+
+// const Home = () => {
+//   const navigate = useNavigate();
+
+//   const handleStartLearning = () => {
+//     const token = localStorage.getItem("token");
+//     const user = JSON.parse(localStorage.getItem("user"));
+
+//     console.log("Start clicked", { token, user }); // 🔍 DEBUG
+
+//     if (!token || !user) {
+//       navigate("/login");
+//       return;
+//     }
+
+//     if (user.role === "user") {
+//       navigate("/technology");
+//       return;
+//     }
+
+//     if (user.role === "creator") {
+//       navigate("/creator/dashboard");
+//       return;
+//     }
+//   };
+
+//   return (
+//     <div className="min-h-screen w-full bg-black text-white flex flex-col items-center justify-center gap-10">
+//       <h1 className="text-7xl font-extrabold">CoDiFy</h1>
+
+//       {/* ❌ Link NAHI hona chahiye */}
+//       <button
+//         onClick={handleStartLearning}
+//         className="px-14 py-5 text-2xl rounded-full bg-green-600 hover:bg-green-700 active:scale-95 transition"
+//       >
+//         Start Learning 🚀
+//       </button>
+//     </div>
+//   );
+// };
+
+// export default Home;
