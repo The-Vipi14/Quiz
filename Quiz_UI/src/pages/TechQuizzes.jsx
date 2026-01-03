@@ -16,7 +16,7 @@ const TechQuizzes = () => {
   }, [tech]);
 
   return (
-    <div className="min-h-screen bg-black text-white p-10">
+    <div className="min-h-screen bg-black text-white p-10 pt-20">
       <h1 className="text-4xl font-bold mb-8">{tech} Quizzes</h1>
 
       {quizzes.length === 0 && (

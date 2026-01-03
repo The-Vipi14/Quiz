@@ -1,37 +1,4 @@
-// import { BrowserRouter, Route, Routes } from "react-router-dom";
-// import {
-//   AnswerContextProvider,
-//   AnswersContext,
-// } from "./context/AnswersContext";
 
-// import Home from "./pages/Home";
-// import Subject from "./pages/Subject";
-// import Qus from "./pages/Qus";
-// import Result from "./components/Result";
-// import Login from "./pages/Login";
-// import Register from "./pages/Register";
-
-// const App = () => {
-//   return (
-//     <>
-//       {" "}
-//       <AnswerContextProvider>
-//         <BrowserRouter>
-//           <Routes>
-//             <Route path="/" element={<Home />} />
-//             <Route path="/register" element={<Register/>} />
-//             <Route path="/login" element={<Login />} />
-//             <Route path="/technology" element={<Subject />} />
-//             <Route path="/qus/:tech" element={<Qus />} />
-//             <Route path="/result" element={<Result />} />
-//           </Routes>
-//         </BrowserRouter>
-//       </AnswerContextProvider>
-//     </>
-//   );
-// };
-
-// export default App;
 
 // with protected routes ============================ //
 
@@ -52,52 +19,91 @@ import Navbar from "./components/Navbar";
 import TechQuizzes from "./pages/TechQuizzes";
 import Profile from "./pages/Profile";
 import QuizSolvers from "./pages/QuizSolvers";
+import UserRoute from "./components/UserRoutes";
+import UserHeader from "./components/UserHeader";
+
 
 const App = () => {
   return (
     <AnswerContextProvider>
       <BrowserRouter>
-        <Navbar />
         <Routes>
-          {/* Public */}
+          {/* ---------------- PUBLIC ---------------- */}
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          {/* Protected */}
+
+          {/* ---------------- USER ONLY ---------------- */}
           <Route
             path="/technology"
             element={
               <ProtectedRoute>
-                <Subject />
+                <UserRoute>
+                  <>
+                    <UserHeader />
+                    <Subject />
+                  </>
+                </UserRoute>
               </ProtectedRoute>
             }
           />
+
           <Route
-            path="/qus/:tech"
+            path="/technology/:tech"
             element={
               <ProtectedRoute>
-                <Qus />
+                <UserRoute>
+                  <>
+                    <UserHeader />
+                    <TechQuizzes />
+                  </>
+                </UserRoute>
               </ProtectedRoute>
             }
           />
+
+          <Route
+            path="/quiz/:quizId"
+            element={
+              <ProtectedRoute>
+                <UserRoute>
+                  <>
+                    <UserHeader />
+                    <Qus />
+                  </>
+                </UserRoute>
+              </ProtectedRoute>
+            }
+          />
+
           <Route
             path="/result"
             element={
               <ProtectedRoute>
-                <Result />
+                <UserRoute>
+                  <>
+                    <UserHeader />
+                    <Result />
+                  </>
+                </UserRoute>
               </ProtectedRoute>
             }
           />
+
           <Route
-            path="/creator"
+            path="/profile"
             element={
               <ProtectedRoute>
-                <CreatorRoute>
-                  <CreateQuiz />
-                </CreatorRoute>
+                <UserRoute>
+                  <>
+                    <Profile />
+                  </>
+                </UserRoute>
               </ProtectedRoute>
             }
           />
+
+          {/* ---------------- CREATOR ONLY ---------------- */}
           <Route
             path="/creator/dashboard"
             element={
@@ -108,31 +114,18 @@ const App = () => {
               </ProtectedRoute>
             }
           />
+
           <Route
-            path="/technology/:tech"
+            path="/creator"
             element={
               <ProtectedRoute>
-                <TechQuizzes />
+                <CreatorRoute>
+                  <CreateQuiz />
+                </CreatorRoute>
               </ProtectedRoute>
             }
           />
-          <Route
-            path="/quiz/:quizId"
-            element={
-              <ProtectedRoute>
-                <Qus />
-              </ProtectedRoute>
-            }
-          />
-          import Profile from "./pages/Profile";
-          <Route
-            path="/profile"
-            element={
-              <ProtectedRoute>
-                <Profile />
-              </ProtectedRoute>
-            }
-          />
+
           <Route
             path="/creator/quiz/:quizId"
             element={

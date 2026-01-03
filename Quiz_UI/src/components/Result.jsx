@@ -256,10 +256,10 @@ const Result = () => {
 
         <div className="flex justify-center">
           <button
-            onClick={() => navigate(-1)}
+            onClick={() => navigate('/technology')}
             className="px-10 py-4 rounded-full bg-blue-600 text-white text-lg"
           >
-            Try Again
+            Try next
           </button>
         </div>
 
