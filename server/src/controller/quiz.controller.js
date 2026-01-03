@@ -132,3 +132,44 @@ export const submitQuiz = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+
+
+// GET quizzes created by logged-in creator
+export const getCreatorQuizzes = async (req, res) => {
+  try {
+    const quizzes = await Quiz.find({ createdBy: req.user.userId })
+      .sort({ createdAt: -1 });
+
+    res.json({
+      success: true,
+      data: quizzes,
+    });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+// DELETE quiz (creator only, own quiz)
+export const deleteQuiz = async (req, res) => {
+  try {
+    const quiz = await Quiz.findById(req.params.id);
+
+    if (!quiz) {
+      return res.status(404).json({ message: "Quiz not found" });
+    }
+
+    if (quiz.createdBy.toString() !== req.user.userId) {
+      return res.status(403).json({ message: "Not allowed" });
+    }
+
+    await quiz.deleteOne();
+
+    res.json({
+      success: true,
+      message: "Quiz deleted successfully",
+    });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};

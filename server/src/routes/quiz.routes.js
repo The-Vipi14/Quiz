@@ -4,6 +4,8 @@ import {
   getQuizById,
   createQuiz,
   submitQuiz,
+  getCreatorQuizzes,
+  deleteQuiz,
 } from "../controller/quiz.controller.js";
 
 import { protect, creatorOnly } from "../middleware/auth.middleware.js";
@@ -18,5 +20,9 @@ router.post("/", protect, creatorOnly, createQuiz);
 
 // quiz submit (any logged-in user)
 router.post("/submit", protect, submitQuiz);
+
+// creator dashboard
+router.get("/creator/me", protect, creatorOnly, getCreatorQuizzes);
+router.delete("/:id", protect, creatorOnly, deleteQuiz);
 
 export default router;
