@@ -135,7 +135,7 @@ const Subject = () => {
             <button
               onClick={() => openQus(tech.name)}
               className="self-start mt-4 px-8 py-3 rounded-full bg-blue-600 text-white font-medium
-              hover:bg-blue-700 hover:scale-105 active:scale-95 transition-all"
+              hover:bg-blue-700 hover:scale-105 active:scale-95 transition-all cursor-pointer"
             >
               Start →
             </button>

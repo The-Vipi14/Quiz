@@ -22,14 +22,6 @@ const Home = () => {
         </h3>
 
         <div className="flex gap-6 mt-8">
-          {/* <Link
-            to="/technology"
-            className="px-16 py-5 rounded-full bg-gradient-to-r from-green-500 to-green-700 text-3xl font-bold
-            hover:scale-105 hover:shadow-2xl active:scale-95 transition-all"
-          >
-            Start Learning 🚀
-          </Link> */}
-
           <Link
             to="/technology"
             className="
@@ -88,13 +80,7 @@ const Home = () => {
           Pick a technology, start answering questions, and turn practice into
           mastery.
         </p>
-        {/* <Link
-          to="/technology"
-          className="px-20 py-6 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-3xl font-semibold
-          hover:scale-105 hover:shadow-2xl active:scale-95 transition-all"
-        >
-          Choose a Technology →
-        </Link> */}
+        
         <Link
           to="/technology"
           className="
