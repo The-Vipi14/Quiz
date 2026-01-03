@@ -51,6 +51,7 @@ import CreatorDashboard from "./pages/CreatorDashboard";
 import Navbar from "./components/Navbar";
 import TechQuizzes from "./pages/TechQuizzes";
 import Profile from "./pages/Profile";
+import QuizSolvers from "./pages/QuizSolvers";
 
 const App = () => {
   return (
@@ -129,6 +130,16 @@ const App = () => {
             element={
               <ProtectedRoute>
                 <Profile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/creator/quiz/:quizId"
+            element={
+              <ProtectedRoute>
+                <CreatorRoute>
+                  <QuizSolvers />
+                </CreatorRoute>
               </ProtectedRoute>
             }
           />

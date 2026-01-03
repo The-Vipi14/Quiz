@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import API from "../api/api";
+import { useNavigate } from "react-router-dom";
+
+import API from "../API/api";
 
 const CreatorDashboard = () => {
   const [quizzes, setQuizzes] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const navigate = useNavigate();
   const fetchQuizzes = async () => {
     const res = await API.get("/quizzes/creator/me");
     setQuizzes(res.data.data);
@@ -44,7 +46,12 @@ const CreatorDashboard = () => {
             <p className="text-sm text-gray-500 mt-2">
               Attempts: {q.totalAttempts}
             </p>
-
+            <button
+              onClick={() => navigate(`/creator/quiz/${q._id}`)}
+              className="mt-3 px-5 py-2 bg-blue-600 rounded"
+            >
+              View Solvers
+            </button>
             <button
               onClick={() => deleteQuiz(q._id)}
               className="mt-4 px-5 py-2 bg-red-600 rounded hover:bg-red-700"
