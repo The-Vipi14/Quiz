@@ -49,18 +49,19 @@ import CreateQuiz from "./pages/CreateQuiz";
 import CreatorRoute from "./components/CreatorRoute";
 import CreatorDashboard from "./pages/CreatorDashboard";
 import Navbar from "./components/Navbar";
+import TechQuizzes from "./pages/TechQuizzes";
+import Profile from "./pages/Profile";
 
 const App = () => {
   return (
     <AnswerContextProvider>
       <BrowserRouter>
-      <Navbar/>
+        <Navbar />
         <Routes>
           {/* Public */}
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-
           {/* Protected */}
           <Route
             path="/technology"
@@ -70,7 +71,6 @@ const App = () => {
               </ProtectedRoute>
             }
           />
-
           <Route
             path="/qus/:tech"
             element={
@@ -79,7 +79,6 @@ const App = () => {
               </ProtectedRoute>
             }
           />
-
           <Route
             path="/result"
             element={
@@ -103,8 +102,33 @@ const App = () => {
             element={
               <ProtectedRoute>
                 <CreatorRoute>
-                  <CreatorDashboard/>
+                  <CreatorDashboard />
                 </CreatorRoute>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/technology/:tech"
+            element={
+              <ProtectedRoute>
+                <TechQuizzes />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/quiz/:quizId"
+            element={
+              <ProtectedRoute>
+                <Qus />
+              </ProtectedRoute>
+            }
+          />
+          import Profile from "./pages/Profile";
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
               </ProtectedRoute>
             }
           />

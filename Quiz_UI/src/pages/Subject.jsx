@@ -65,7 +65,6 @@
 
 // export default Subject;
 
-
 import { technologies } from "../data/technologies";
 import { useNavigate } from "react-router-dom";
 
@@ -77,7 +76,8 @@ const Subject = () => {
   };
 
   const openQus = (tech) => {
-    navigator(`/qus/${tech}`, { state: { tech: tech } });
+    // navigator(`/qus/${tech}`, { state: { tech: tech } });
+    navigator(`/technology/${tech}`);
   };
 
   return (
