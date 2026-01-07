@@ -27,7 +27,10 @@ const Register = () => {
     setLoading(true);
 
     try {
-      await API.post("/auth/register", form);
+      const res = await API.post("/auth/register", form);
+
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("user", JSON.stringify(res.data.user));
 
       setSuccess("Registration successful! Please login.");
       setTimeout(() => navigate("/technology"), 1500);
