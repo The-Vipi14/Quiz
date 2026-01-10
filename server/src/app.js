@@ -7,7 +7,11 @@ import leaderboardRoutes from "./routes/leaderboard.routes.js";
 import resultRoutes from './routes/result.route.js'
 const app = express();
 
-app.use(cors());
+app.use(cors({
+     origin: [
+    "http://localhost:5173" // local frontend
+  ],
+}));
 app.use(express.json());
 
 app.get("/", (req, res) => {
