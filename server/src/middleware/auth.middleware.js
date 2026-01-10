@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken";
 /**
  * Verify JWT token
  */
+
 export const protect = (req, res, next) => {
   let token;
 
@@ -31,8 +32,8 @@ export const protect = (req, res, next) => {
   } catch (error) {
     return res.status(401).json({ message: "Invalid token" });
   }
-};
-
+}; 
+ 
 /**
  * Creator-only guard
  */
