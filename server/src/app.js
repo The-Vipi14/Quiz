@@ -9,7 +9,8 @@ const app = express();
 
 app.use(cors({
      origin: [
-    "http://localhost:5173" // local frontend
+    "http://localhost:5173" ,
+    "https://quiz-cydy.vercel.app"// local frontend
   ],
 }));
 app.use(express.json());
