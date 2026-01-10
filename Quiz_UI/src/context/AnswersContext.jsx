@@ -8,6 +8,7 @@ export const AnswerContextProvider = ({ children }) => {
   const [currentSubjectQusAns, setCurrentSubjectQusAns] = useState([]);
   const [activeSubjectQuiz, setActiveSubjectQuiz] = useState([]);
   const [score, setScore] = useState(0);
+     
   return (
     <AnswersContext.Provider
       value={{

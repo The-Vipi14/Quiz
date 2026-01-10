@@ -7,7 +7,7 @@ const Home = () => {
   const handleStartLearning = () => {
     const token = localStorage.getItem("token");
     const user = JSON.parse(localStorage.getItem("user"));
-
+    
     console.log("Start clicked", { token, user }); // 🔍 DEBUG
 
     if (!token || !user) {
