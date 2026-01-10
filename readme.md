@@ -93,33 +93,33 @@ Backend:
        │
        └── App.jsx
 
-Backend:
-server/
-├── src/
-│   ├── controllers/
-│   │   ├── auth.controller.js
-│   │   ├── quiz.controller.js
-│   │   └── result.controller.js
-│   │
-│   ├── models/
-│   │   ├── User.js
-│   │   ├── Quiz.js
-│   │   └── Result.js
-│   │
-│   ├── routes/
-│   │   ├── auth.routes.js
-│   │   ├── quiz.routes.js
-│   │   └── result.routes.js
-│   │
-│   ├── middlewares/
-│   │   ├── auth.middleware.js
-│   │   └── role.middleware.js
-│   │
-│   ├── app.js
-│   └── server.js
-│
-├── .env
-└── package.json
+        Backend:
+        server/
+        ├── src/
+        │   ├── controllers/
+        │   │   ├── auth.controller.js
+        │   │   ├── quiz.controller.js
+        │   │   └── result.controller.js
+        │   │
+        │   ├── models/
+        │   │   ├── User.js
+        │   │   ├── Quiz.js
+        │   │   └── Result.js
+        │   │
+        │   ├── routes/
+        │   │   ├── auth.routes.js
+        │   │   ├── quiz.routes.js
+        │   │   └── result.routes.js
+        │   │
+        │   ├── middlewares/
+        │   │   ├── auth.middleware.js
+        │   │   └── role.middleware.js
+        │   │
+        │   ├── app.js
+        │   └── server.js
+        │
+        ├── .env
+        └── package.json
 
 ---
 
