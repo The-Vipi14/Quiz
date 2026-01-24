@@ -4,7 +4,7 @@ import "./sidebar.css";
 const Sidebar = () => {
   return (
     <aside className="sidebar">
-      <h2 className="sidebar-logo">Owner Panel</h2>
+      <h2 className="sidebar-logo">CoDiFy</h2>
 
       <nav className="sidebar-nav">
         <NavLink

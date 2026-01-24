@@ -1,35 +1,50 @@
-
-/* ===== Sidebar ===== */
 .sidebar {
   width: 220px;
-  background-color: #0f172a;
+  min-height: 100vh;
+  background-color: #00117f;
   color: #ffffff;
-  padding: 20px;
+  padding: 24px 16px;
+  box-sizing: border-box;
 }
 
 .sidebar-logo {
-  font-size: 20px;
+  font-size: 28px;
   font-weight: 600;
-  margin-bottom: 30px;
+  margin-bottom: 32px;
+  padding-left: 12px;
+  letter-spacing: 0.5px;
 }
 
 .sidebar-nav {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 6px;
 }
 
 .sidebar-link {
+  display: flex;
+  align-items: center;
+  padding: 10px 14px;
+  border-radius: 8px;
   color: #cbd5f5;
   text-decoration: none;
-  transition: color 0.2s ease;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .sidebar-link:hover {
-  color: #ffffff;
+  background-color: #ffffff2a;
+  color: #c9c8c8;
 }
 
-.sidebar-link.active{
+.sidebar-link.active {
   background-color: #ffffff;
   color: #0f172a;
+  font-weight: 600;
+}
+
+.sidebar-link:focus-visible {
+  outline: 2px solid #94a3b8;
+  outline-offset: 2px;
 }
