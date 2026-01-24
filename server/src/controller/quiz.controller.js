@@ -1,31 +1,6 @@
 import Quiz from "../models/Quiz.js";
 import Result from "../models/Result.js";
 
-/**
- * GET quizzes by technology
- */
-// export const getQuizzesByTech = async (req, res) => {
-//   try {
-//     const { tech } = req.query;
-
-//     if (!tech) {
-//       return res.status(400).json({ message: "Technology is required" });
-//     }
-
-//     const quizzes = await Quiz.find({ tech }).select("-questions.answer");
-
-//     res.status(200).json({
-//       success: true,
-//       count: quizzes.length,
-//       data: quizzes,
-//     });
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// };
-
-
-// GET quizzes by technology (ALL creators)
 
 export const getQuizzesByTech = async (req, res) => {
   try {
@@ -75,6 +50,7 @@ export const getQuizById = async (req, res) => {
 /**
  * CREATE quiz (CREATOR ONLY)
  */
+
 export const createQuiz = async (req, res) => {
   try {
     const { title, tech, questions } = req.body;

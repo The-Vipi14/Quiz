@@ -8,11 +8,12 @@ import resultRoutes from './routes/result.route.js'
 const app = express();
 
 app.use(cors({
-     origin: [
-    "http://localhost:5173" ,
-    "https://quiz-cydy.vercel.app"// local frontend
-  ],
+    origin: [
+        "http://localhost:5173",
+        // "https://quiz-cydy.vercel.app"// local frontend
+    ],
 }));
+
 app.use(express.json());
 
 app.get("/", (req, res) => {

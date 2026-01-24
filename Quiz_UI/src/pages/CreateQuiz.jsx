@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import API from "../api/api";
+import API from "../utils/api";
 import { technologies } from "../data/technologies";
 
 const emptyQuestion = {

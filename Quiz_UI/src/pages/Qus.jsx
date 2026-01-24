@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
-import API from "../api/api";
+import API from "../utils/api";
 import QusComp from "../components/QusComp";
 import { AnswersContext } from "../context/AnswersContext";
 

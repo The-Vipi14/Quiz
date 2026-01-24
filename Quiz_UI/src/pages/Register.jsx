@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import API from "../api/api";
+import API from "../utils/api";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ const Register = () => {
 
     try {
       const res = await API.post("/auth/register", form);
-
+      console.log(res)
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
 
@@ -39,7 +39,10 @@ const Register = () => {
     } finally {
       setLoading(false);
     }
+   
   };
+
+ 
 
   return (
     <div className="min-h-screen bg-black flex items-center justify-center">

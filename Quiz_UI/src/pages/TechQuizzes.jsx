@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import API from "../api/api";
+import API from "../utils/api";
 
 const TechQuizzes = () => {
   const { tech } = useParams();
