@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
-// import { getAllCreators } from "../api/ownerApi";
+import { getAllCreators } from '../../utils/API'
 import "./creators.css";
+import { data } from "react-router-dom";
 
 const Creators = () => {
   const [creators, setCreators] = useState([]);
 
-  // useEffect(() => {
-  //   getAllCreators()
-  //     .then(res => setCreators(res.data))
-  //     .catch(err => console.log(err));
-  // }, []);
+  useEffect(() => {
+    getAllCreators()
+      .then(res =>{ setCreators(res.data);
+        console.log(res)
+      })
+      .catch(err => console.log(err))
+  }, []);
 
   return (
     <div className="creators">

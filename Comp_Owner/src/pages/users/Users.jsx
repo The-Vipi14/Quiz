@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
-// import { getAllUsers } from "../api/ownerApi";
+import { getAllUsers } from '../../utils/API';
 
 import "./user.css";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
 
-//   useEffect(() => {
-//     getAllUsers()
-//       .then(res => setUsers(res.data))
-//       .catch(err => console.log(err));
-//   }, []);
+  useEffect(() => {
+    getAllUsers()
+      .then(res => setUsers(res.data))
+      .catch(err => console.log(err));
+  }, []);
 
   return (
     <div className="users">
