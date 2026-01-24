@@ -1,0 +1,63 @@
+/* ===== Creators Page ===== */
+.creators {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.creators-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+/* ===== Table Wrapper ===== */
+.creators-table-wrapper {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  overflow-x: auto;
+}
+
+/* ===== Table ===== */
+.creators-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.creators-table th {
+  text-align: left;
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+  padding: 12px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.creators-table td {
+  padding: 12px;
+  font-size: 14px;
+  color: #0f172a;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+/* Hover row */
+.creators-table tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+/* Role */
+.role {
+  text-transform: capitalize;
+  font-weight: 500;
+  color: #1e293b;
+}
+
+/* No data */
+.no-data {
+  text-align: center;
+  padding: 20px;
+  color: #64748b;
+  font-size: 14px;
+}
