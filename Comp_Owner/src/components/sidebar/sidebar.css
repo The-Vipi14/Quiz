@@ -1,0 +1,35 @@
+
+/* ===== Sidebar ===== */
+.sidebar {
+  width: 220px;
+  background-color: #0f172a;
+  color: #ffffff;
+  padding: 20px;
+}
+
+.sidebar-logo {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sidebar-link {
+  color: #cbd5f5;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.sidebar-link:hover {
+  color: #ffffff;
+}
+
+.sidebar-link.active{
+  background-color: #ffffff;
+  color: #0f172a;
+}

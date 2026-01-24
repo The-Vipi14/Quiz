@@ -1,0 +1,12 @@
+/* ===== Layout ===== */
+.dashboard-wrapper {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f8fafc;
+}
+
+/* ===== Main Content ===== */
+.dashboard-main {
+  flex: 1;
+  padding: 24px;
+}
