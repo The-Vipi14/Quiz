@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
 import { getAllQuizzes } from "../../utils/API";
 import { useEffect, useState } from "react";
+import "./quizzes.css";
+
 
 const Quizzes = () => {
   const [data, setData] = useState([]);
   const [tech, setTech] = useState("HTML");
   const [filteredQuizzes, setTilteredQuizzes] = useState([]);
+  const [showTech, setShowTech] = useState(5);
 
   useEffect(() => {
     getAllQuizzes()
@@ -16,16 +19,46 @@ const Quizzes = () => {
   useEffect(() => {
     const filtered = data.filter((q) => q.tech === tech);
     setTilteredQuizzes(filtered);
-  }, [tech,data]);
+  }, [tech, data]);
+
+  const technologies = [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "React",
+    "Node.js",
+    "Express",
+    "MongoDB",
+    "C++ Programming",
+    "C Programming",
+    "Java Programming",
+  ];
+
 
   return (
     <>
       <div className="all-quizzes">
         <h2>Quizzes</h2>
 
-        <div className="technologies">
+        <div className="technologies-box">
           <ul>
-            <li
+            {technologies.slice(0, showTech).map((tech) => (
+              <li key={tech} onClick={() => setTech(tech)}>
+                {tech}
+              </li>
+            ))}
+            <p  className="moreButton"
+              onClick={() => {
+                showTech === 5
+                  ? setShowTech(technologies.length)
+                  : setShowTech(5);
+              }}
+            >
+              {showTech === 5 ? ">" : "X"}
+            </p>
+
+
+            {/* <li
               onClick={() => {
                 setTech("HTML");
               }}
@@ -79,31 +112,34 @@ const Quizzes = () => {
                 setTech("C Programming");
               }}
             >
-              C
+              C Programming
             </li>
             <li
               onClick={() => {
                 setTech("C++ Programming");
               }}
             >
-              C++
+              C++ Programming
             </li>
             <li
               onClick={() => {
                 setTech("Java Programming");
               }}
             >
-              JAVA
-            </li>
+              JAVA Programming
+            </li> */}
           </ul>
         </div>
-
+        <h3>Technology name: {tech}</h3>
         {filteredQuizzes.map((quiz) => (
-          <div key={quiz._id}>{quiz.tech}</div>
+          <div key={quiz._id}>
+            <p>{quiz.title}</p>
+            <p>Total Questions: {quiz.questions.length}</p>
+          </div>
         ))}
       </div>
     </>
   );
 };
 
-export default Quizzes; 
+export default Quizzes;

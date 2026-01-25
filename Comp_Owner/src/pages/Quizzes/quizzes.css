@@ -1,0 +1,46 @@
+.all-quizzes {
+  height: 100%;
+  width: 100%;
+}
+
+.technologies-box ul {
+  margin-top: 20px;
+  list-style: none;
+  width: 90%;
+  display: flex;
+  gap: 30px;
+}
+
+.technologies-box ul li {
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  &:hover {
+    color: rgb(255, 255, 255);
+    z-index: 999;
+  }
+}
+.technologies-box ul li::before {
+  content: "";
+  width: 0%;
+  height: 107%;
+  position: absolute;
+  left: -10%;
+  padding: 0 2px;
+  transition: 1s;
+  border-radius: 10px;
+}
+.technologies-box ul li:hover::before {
+  background-color: rgba(77, 24, 252, 0.999);
+  width: 120%;
+  display: block;
+  color: antiquewhite;
+  transition: 0.4s;
+  z-index: -1;
+}
+.moreButton{
+    font-size: 20px;
+    font-weight: 900;
+    cursor: pointer;
+}
