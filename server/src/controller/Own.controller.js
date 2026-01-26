@@ -87,4 +87,18 @@ export const user_solvedQuiz = async (req, res) => {
     } catch (error) {
         console.log(error)
     }
-}  
+}
+
+
+
+export const creator_CreatedQuizzes = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const quizzes = await Quiz.find({ createdBy: id })
+        res.json({
+            data: quizzes
+        })
+    } catch (error) {
+
+    }
+}
