@@ -1,103 +1,3 @@
-// import { Link } from "react-router-dom";
-// import { getQuizBytech } from "../../utils/API";
-// import { useEffect, useState } from "react";
-// import "./quizzes.css";
-
-// const Quizzes = () => {
-//   const [data, setData] = useState([]);
-//   const [tech, setTech] = useState("HTML");
-//   const [filteredQuizzes, setTilteredQuizzes] = useState([]);
-//   const [showTech, setShowTech] = useState(5);
-//   const [creatorOfQuiz, setCreatorOfQuiz] = useState("");
-
-//   useEffect(() => {});
-
-//   useEffect(() => {
-//     getQuizBytech(tech)
-//       .then((res) => setData(res.data.data))
-//       .catch((error) => console.log(error));
-//   }, [tech]);
-
-//   useEffect(() => {
-//     const filtered = data.filter((q) => q.tech === tech);
-//     setTilteredQuizzes(filtered);
-//   }, [tech, data]);
-
-//   const technologies = [
-//     "HTML",
-//     "CSS",
-//     "JavaScript",
-//     "React",
-//     "Node.js",
-//     "Express",
-//     "MongoDB",
-//     "C++ Programming",
-//     "C Programming",
-//     "Java Programming",
-//   ];
-
-//   return (
-//     <>
-//       <div className="all-quizzes">
-//         <h2>Quizzes</h2>
-
-//         <div className="technologies-box">
-//           <ul>
-//             {technologies.slice(0, showTech).map((tech) => (
-//               <li key={tech} onClick={() => setTech(tech)}>
-//                 {tech}
-//               </li>
-//             ))}
-//             <p
-//               className="moreButton"
-//               onClick={() => {
-//                 showTech === 5
-//                   ? setShowTech(technologies.length)
-//                   : setShowTech(5);
-//               }}
-//             >
-//               {showTech === 5 ? ">" : " "}
-//             </p>
-//           </ul>
-//         </div>
-//         <h3>Technology name: {tech}</h3>
-//         {filteredQuizzes.map((quiz) => (
-//           <div key={quiz._id}>
-//             <p>{quiz.title}</p>
-//             <p>Total Questions: {quiz.questions.length}</p>
-//             <p>created By: {quiz.createdBy.name}</p>
-//           </div>
-//         ))}
-//       </div>
-//     </>
-//   );
-// };
-
-// export default Quizzes;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import { useEffect, useState } from "react";
 import { getQuizBytech } from "../../utils/API";
 import "./quizzes.css";
@@ -106,6 +6,7 @@ const Quizzes = () => {
   const [quizzes, setQuizzes] = useState([]);
   const [selectedTech, setSelectedTech] = useState("HTML");
   const [showTech, setShowTech] = useState(5);
+  const [selectedQuiz, setSelectedQuiz] = useState(null);
 
   const technologies = [
     "HTML",
@@ -133,22 +34,24 @@ const Quizzes = () => {
   }, [selectedTech]);
 
   return (
-    <div className="all-quizzes">
+    <div className="quiz-all-quizzes">
       <h2>Quizzes</h2>
 
-      <div className="technologies-box">
+      <div className="quiz-technologies-box">
         <ul>
           {technologies.slice(0, showTech).map((tech) => (
             <li
               key={tech}
-              className={selectedTech === tech ? "active" : ""}
+              className={`quiz-tech-item ${
+                selectedTech === tech ? "quiz-active" : ""
+              }`}
               onClick={() => setSelectedTech(tech)}
             >
               {tech}
             </li>
           ))}
           <span
-            className="moreButton"
+            className="quiz-moreButton"
             onClick={() =>
               setShowTech(showTech === 5 ? technologies.length : 5)
             }
@@ -164,12 +67,65 @@ const Quizzes = () => {
         {quizzes.map((quiz) => (
           <div className="quiz-card" key={quiz._id}>
             <p className="quiz-title">Title: {quiz.title}</p>
-            <p className="total-qus">Total Questions: {quiz.questions?.length}</p>
-            <p className="createdBy">Created By: {quiz.createdBy?.name}</p>
-           <button className="visit-button">visit quiz</button>
+            <p className="quiz-total-qus">
+              Total Questions: {quiz.questions?.length}
+            </p>
+            <p className="quiz-createdBy">
+              Created By: {quiz.createdBy?.name}
+            </p>
+
+            <button
+              className="quiz-visit-button"
+              onClick={() => setSelectedQuiz(quiz)}
+            >
+              Visit Quiz
+            </button>
           </div>
         ))}
       </div>
+
+      {selectedQuiz && (
+        <div
+          className="quiz-modal-overlay"
+          onClick={() => setSelectedQuiz(null)}
+        >
+          <div
+            className="quiz-modal-content"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h2 className="quiz-modal-title">{selectedQuiz.title}</h2>
+
+            <ul className="quiz-question-list">
+              {selectedQuiz.questions.map((q, qIndex) => (
+                <li className="quiz-question-card" key={qIndex}>
+                  <p className="quiz-question-text">
+                    Q{qIndex + 1}. {q.question}
+                  </p>
+
+                  <div className="quiz-options">
+                    {q.options.map((op, idx) => (
+                      <p className="quiz-option" key={idx}>
+                        {String.fromCharCode(65 + idx)}. {op}
+                      </p>
+                    ))}
+                  </div>
+
+                  <p className="quiz-answer">
+                    Right Answer: <span>{q.answer}</span>
+                  </p>
+                </li>
+              ))}
+            </ul>
+
+            <button
+              className="quiz-close-btn"
+              onClick={() => setSelectedQuiz(null)}
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

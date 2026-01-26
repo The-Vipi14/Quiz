@@ -45,7 +45,7 @@ const UserProfile = ({ user }) => {
         {user.createdAt && (
           <div className="detail">
             <span>Joined</span>
-            <p>{new Date(user.createdAt).toLocaleDateString()}</p>
+            <p>{new Date(user.createdAt).toLocaleDateString("en-IN")}</p>
           </div>
         )}
       </div>

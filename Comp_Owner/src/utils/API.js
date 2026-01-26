@@ -7,5 +7,5 @@ export const api = axios.create({
 export const getAllUsers = () => api.get('/owner/all-users');
 export const getAllCreators = () => api.get('/owner/all-creator');
 export const getAllQuizzes = () => api.get('/owner/all-quizzes');
-export const getQuizBytech = (tech) => api.get(`/quizzes?tech=${tech}`);
+export const getQuizBytech = (tech) => api.get(`/owner?tech=${tech}`);
 

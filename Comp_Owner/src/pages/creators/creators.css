@@ -1,4 +1,3 @@
-/* ===== Creators Page ===== */
 .creators {
   display: flex;
   flex-direction: column;
@@ -11,7 +10,6 @@
   color: #0f172a;
 }
 
-/* ===== Table Wrapper ===== */
 .creators-table-wrapper {
   background-color: #ffffff;
   border-radius: 12px;
@@ -20,7 +18,7 @@
   overflow-x: auto;
 }
 
-/* ===== Table ===== */
+
 .creators-table {
   width: 100%;
   border-collapse: collapse;
@@ -42,19 +40,20 @@
   border-bottom: 1px solid #f1f5f9;
 }
 
-/* Hover row */
+
 .creators-table tbody tr:hover {
   background-color: #f8fafc;
+  cursor: pointer;
 }
 
-/* Role */
+
 .role {
   text-transform: capitalize;
   font-weight: 500;
   color: #1e293b;
 }
 
-/* No data */
+
 .no-data {
   text-align: center;
   padding: 20px;
