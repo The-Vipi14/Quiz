@@ -3,6 +3,7 @@ import DashboardLayout from "./layout/DashboardLayout";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Users from "./pages/users/Users";
 import Creators from "./pages/creators/creators";
+import Quizzes from "./pages/Quizzes/Quizzes";
 
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
         <Route index element={<Dashboard/>} />
         <Route path="users" element={<Users/> } />
         <Route path="creators" element={<Creators/>} />
-        {/* <Route path="quizzes" element={<Quizzes />} /> */}
+        <Route path="quizzes" element={<Quizzes/>} />
       </Route>
     </Routes>
   );

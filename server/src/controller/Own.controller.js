@@ -18,7 +18,7 @@ export const Owner_GetAllCreator = async (req, res) => {
         const data = await User.find({ role: "creator" });
         res.send(data)
 
-    } catch (error) { 
+    } catch (error) {
         console.log(error)
     }
 }
@@ -56,11 +56,34 @@ export const getUserProfile = async (req, res) => {
 }
 
 
+// export const user_solvedQuiz = async (req, res) => {
+//     try {
+//         const { id } = req.params;
+//         const quizzes = await Result.find({ userId: id })
+//         res.send(quizzes)
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }  
+
 export const user_solvedQuiz = async (req, res) => {
     try {
         const { id } = req.params;
-        const quizzes = await Result.find({ userId: id })
-        res.send(quizzes)
+        const results = await Result.find({ userId: id })
+            .populate({
+                path: "quizId",
+                select: "title tech createdBy",
+                populate: {
+                    path: "createdBy",
+                    select: "name",
+                },
+            })
+            .sort({ createdAt: -1 });
+
+        res.json({
+            success: true,
+            data: results,
+        });
     } catch (error) {
         console.log(error)
     }

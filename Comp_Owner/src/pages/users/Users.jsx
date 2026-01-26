@@ -48,8 +48,6 @@
 
 // export default Users;
 
-
-
 import { useEffect, useState } from "react";
 import { getAllUsers } from "../../utils/API";
 import "./user.css";
@@ -81,10 +79,7 @@ const Users = () => {
 
           <tbody>
             {users.map((user) => (
-              <tr
-                key={user._id}
-                onClick={() => setSelectedUser(user)}
-              >
+              <tr key={user._id} onClick={() => setSelectedUser(user)}>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
                 <td className="role">{user.role}</td>
@@ -93,23 +88,15 @@ const Users = () => {
           </tbody>
         </table>
 
-        {users.length === 0 && (
-          <p className="no-data">No users found</p>
-        )}
+        {users.length === 0 && <p className="no-data">No users found</p>}
       </div>
 
       {/* MODAL */}
       {selectedUser && (
         <div className="modal-overlay" onClick={() => setSelectedUser(null)}>
-          <div
-            className="modal-content"
-            onClick={(e) => e.stopPropagation()}
-          >
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <UserProfile user={selectedUser} />
-            <button
-              className="close-btn"
-              onClick={() => setSelectedUser(null)}
-            >
+            <button className="close-btn" onClick={() => setSelectedUser(null)}>
               ✕
             </button>
           </div>
@@ -120,4 +107,3 @@ const Users = () => {
 };
 
 export default Users;
-
