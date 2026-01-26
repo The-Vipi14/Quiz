@@ -14,7 +14,7 @@ const Creators = () => {
       .catch(err => console.log(err))
   }, []);
 
-  return (
+  return ( 
     <div className="creators">
       <h1 className="creators-title">Creators</h1>
 
