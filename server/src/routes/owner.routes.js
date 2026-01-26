@@ -7,15 +7,19 @@ import {
     Owner_GetAllCreator,
     Owner_GetAllQuizzes,
     Quiz_by_creator,
-    getUserProfile
+    getUserProfile,
+    user_solvedQuiz
 } from "../controller/Own.controller.js";
-
+import {getUserResults} from '../controller/result.controller.js'
 const Router = express.Router();
 
 Router.get("/all-users", Owner_GetAllUsers);
 Router.get("/all-creator", Owner_GetAllCreator);
 Router.get("/all-quizzes", Owner_GetAllQuizzes);
 Router.get("/creator-quiz", Quiz_by_creator);
+Router.get("/user-solvedquiz/:id", user_solvedQuiz);
+
+
 Router.post("/user-profile", getUserProfile);
 
-export default Router;
+export default Router; 

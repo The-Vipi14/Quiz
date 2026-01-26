@@ -1,5 +1,7 @@
 import User from "../models/User.js";
 import Quiz from "../models/Quiz.js";
+import Result from "../models/Result.js";
+
 
 export const Owner_GetAllUsers = async (req, res) => {
     try {
@@ -16,7 +18,7 @@ export const Owner_GetAllCreator = async (req, res) => {
         const data = await User.find({ role: "creator" });
         res.send(data)
 
-    } catch (error) {
+    } catch (error) { 
         console.log(error)
     }
 }
@@ -52,3 +54,14 @@ export const getUserProfile = async (req, res) => {
         console.log(error)
     }
 }
+
+
+export const user_solvedQuiz = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const quizzes = await Result.find({ userId: id })
+        res.send(quizzes)
+    } catch (error) {
+        console.log(error)
+    }
+}  
