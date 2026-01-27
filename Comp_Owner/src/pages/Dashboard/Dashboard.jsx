@@ -33,7 +33,11 @@
 // export default Dashboard;
 
 import "./dashboard.css";
-import { getToalNoUserQuizCreators } from "../../utils/API";
+import {
+  getToalNoUserQuizCreators,
+  getQuizGrowthData,
+  getTechWiseQuizData,
+} from "../../utils/API";
 
 import {
   LineChart,
@@ -51,34 +55,57 @@ import { useState } from "react";
 
 const Dashboard = () => {
   const [data, setData] = useState([]);
+  const [quizGrowthData, setQuizGrowthData] = useState([]);
+  const [techWiseData, setTechWiseData] = useState([]);
   useEffect(() => {
     getToalNoUserQuizCreators()
       .then((res) => setData(res.data.data))
       .catch((err) => console.log(err));
-  },[]);
-console.log(data)
+  }, []);
+
+  useEffect(() => {
+    getQuizGrowthData()
+      .then((res) => setQuizGrowthData(res.data.data))
+      .catch((err) => console.log(err));
+  }, []);
+
+  useEffect(() => {
+    getTechWiseQuizData()
+      .then((res) => setTechWiseData(res.data.data))
+      .catch((err) => console.log(err));
+  }, []);
+
+  console.log(data);
   const stats = [
     { label: "Total Users", value: data.totalUsers },
     { label: "Total Creators", value: data.totalCreators },
     { label: "Total Quizzes", value: data.totalQuizzes },
     { label: "Active Quizzes", value: data.totalQuizzes },
   ];
+  const formattedTechData = techWiseData.map((item) => ({
+    ...item,
+    tech:
+      item.tech === "Java Programming"
+        ? "Java"
+        : item.tech === "C Programming"
+          ? "C"
+          : item.tech,
+  }));
+  // const quizGrowthData = [
+  //   { month: "Jan", quizzes: quizGrowthStats. },
+  //   { month: "Feb", quizzes: 18 },
+  //   { month: "Mar", quizzes: 30 },
+  //   { month: "Apr", quizzes: 45 },
+  //   { month: "May", quizzes: 64 },
+  // ];
 
-  const quizGrowthData = [
-    { month: "Jan", quizzes: 10 },
-    { month: "Feb", quizzes: 18 },
-    { month: "Mar", quizzes: 30 },
-    { month: "Apr", quizzes: 45 },
-    { month: "May", quizzes: 64 },
-  ];
-
-  const techWiseData = [
-    { tech: "HTML", quizzes: 12 },
-    { tech: "CSS", quizzes: 8 },
-    { tech: "JavaScript", quizzes: 20 },
-    { tech: "React", quizzes: 14 },
-    { tech: "Node", quizzes: 10 },
-  ];
+  // const techWiseData = [
+  //   { tech: "HTML", quizzes: 12 },
+  //   { tech: "CSS", quizzes: 8 },
+  //   { tech: "JavaScript", quizzes: 20 },
+  //   { tech: "React", quizzes: 14 },
+  //   { tech: "Node", quizzes: 10 },
+  // ];
 
   return (
     <div className="dashboard">
@@ -114,13 +141,30 @@ console.log(data)
 
         <div className="chart-card">
           <h3>Technology-wise Quizzes</h3>
-          <ResponsiveContainer width="100%" height={260}>
-            <BarChart data={techWiseData}>
+          <ResponsiveContainer width="100%" height={320}>
+            <BarChart
+              data={formattedTechData}
+              margin={{ top: 10, right: 20, left: 10, bottom: 70 }}
+            >
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="tech" />
-              <YAxis />
+
+              <XAxis
+                dataKey="tech"
+                interval={0}
+                angle={-35}
+                textAnchor="end"
+                tickMargin={12}
+                tick={{ fontSize: 11 }}
+              />
+
+              <YAxis allowDecimals={false} />
               <Tooltip />
-              <Bar dataKey="quizzes" fill="#22c55e" radius={[6, 6, 0, 0]} />
+              <Bar
+                dataKey="quizzes"
+                fill="#22c55e"
+                radius={[6, 6, 0, 0]}
+                barSize={28}
+              />
             </BarChart>
           </ResponsiveContainer>
         </div>
