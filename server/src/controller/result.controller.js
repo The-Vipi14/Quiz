@@ -5,7 +5,7 @@ export const getUserResults = async (req, res) => {
   try {
     const results = await Result.find({ userId: req.user.userId })
       .populate({
-        path: "quizId",
+        path: "quizId", 
         select: "title tech createdBy",
         populate: {
           path: "createdBy",

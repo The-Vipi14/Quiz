@@ -15,9 +15,9 @@ const router = express.Router();
 router.get("/", getQuizzesByTech);
 router.get("/:id", getQuizById);
 
-// creator quiz create
+// creator quiz create 
 router.post("/", protect, creatorOnly, createQuiz);
-
+ 
 // quiz submit (any logged-in user)
 router.post("/submit", protect, submitQuiz);
 

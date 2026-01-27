@@ -145,7 +145,7 @@ export const getCreatorQuizzes = async (req, res) => {
     const quizzes = await Quiz.find({ createdBy: req.user.userId })
       .sort({ createdAt: -1 });
 
-    res.json({
+    res.json({ 
       success: true,
       data: quizzes,
     });

@@ -7,11 +7,17 @@ import {
     getUserProfile,
     user_solvedQuiz,
     creator_CreatedQuizzes,
+    getQuizzesByTech,
+    getTotalNumberOf_Q_U_C,
+    getQuizGrowthData,
+    getTechWiseQuizData
 } from "../controller/Own.controller.js";
 
-
 const Router = express.Router();
-
+Router.get("/", getQuizzesByTech);
+Router.get("/total", getTotalNumberOf_Q_U_C);
+Router.get("/QuizGrowth", getQuizGrowthData);
+Router.get("/TechWiseQuizCount", getTechWiseQuizData);
 Router.get("/all-users", Owner_GetAllUsers);
 Router.get("/all-creator", Owner_GetAllCreator);
 Router.get("/all-quizzes", Owner_GetAllQuizzes);
