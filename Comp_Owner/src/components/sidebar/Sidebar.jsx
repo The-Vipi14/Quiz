@@ -32,18 +32,20 @@
 
 // export default Sidebar;
 
-
-
 import { NavLink } from "react-router-dom";
-import {
-  FiHome,
-  FiUsers,
-  FiUserCheck,
-  FiClipboard,
-} from "react-icons/fi";
+import { useState, useEffect } from "react";
+import { FiHome, FiUsers, FiUserCheck, FiClipboard } from "react-icons/fi";
 import "./sidebar.css";
+import { getToalNoUserQuizCreators } from "../../utils/API";
 
 const Sidebar = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    getToalNoUserQuizCreators()
+      .then((res) => setData(res.data.data))
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <aside className="sidebar">
       <div className="sidebar-header">
@@ -54,15 +56,15 @@ const Sidebar = () => {
       <div className="sidebar-stats">
         <div className="sidebar-stat">
           <span>Users</span>
-          <strong>120</strong>
+          <strong>{data.totalUsers}</strong>
         </div>
         <div className="sidebar-stat">
           <span>Creators</span>
-          <strong>18</strong>
+          <strong>{data.totalCreators}</strong>
         </div>
         <div className="sidebar-stat">
           <span>Quizzes</span>
-          <strong>64</strong>
+          <strong>{data.totalQuizzes}</strong>
         </div>
       </div>
 
