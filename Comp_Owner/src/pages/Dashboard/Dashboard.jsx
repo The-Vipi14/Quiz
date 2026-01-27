@@ -32,12 +32,9 @@
 
 // export default Dashboard;
 
-
-
-
-
-
 import "./dashboard.css";
+import { getToalNoUserQuizCreators } from "../../utils/API";
+
 import {
   LineChart,
   Line,
@@ -49,13 +46,22 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import { useEffect } from "react";
+import { useState } from "react";
 
 const Dashboard = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    getToalNoUserQuizCreators()
+      .then((res) => setData(res.data.data))
+      .catch((err) => console.log(err));
+  },[]);
+console.log(data)
   const stats = [
-    { label: "Total Users", value: 120 },
-    { label: "Total Creators", value: 18 },
-    { label: "Total Quizzes", value: 64 },
-    { label: "Active Quizzes", value: 42 },
+    { label: "Total Users", value: data.totalUsers },
+    { label: "Total Creators", value: data.totalCreators },
+    { label: "Total Quizzes", value: data.totalQuizzes },
+    { label: "Active Quizzes", value: data.totalQuizzes },
   ];
 
   const quizGrowthData = [
